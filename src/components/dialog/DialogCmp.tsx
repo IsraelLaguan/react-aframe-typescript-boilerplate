@@ -13,7 +13,7 @@ interface IState {
 
 export default class Dialog extends React.PureComponent<IProps, IState> {
 
-  public state = {isOpen: true};
+  public state = {isOpen: false};
 
   private dialogContainer: HTMLDivElement;
 
@@ -22,11 +22,6 @@ export default class Dialog extends React.PureComponent<IProps, IState> {
 
   /* Css class name for animation when hidding Dialog */
   private static classClosedDialog = 'scale-out-vertical';
-
-  // constructor(props: IProps) {
-  //   super(props);
-  //   this.state = {isOpen: false};
-  // }
 
   // public componentDidMount() {
   //   const parentElement = this.dialogContainer && this.dialogContainer.parentElement as HTMLElement;
