@@ -94,11 +94,13 @@ export default class PagIndexCmp extends React.Component<IProps, IState> {
 
     this.refs.loader.hideWhen(this.refs.scene, 'loaded');
 
-    this.openDialogDelayed(2000);
+    // this.openDialogDelayed(2000);
 
     this.refs.scene && this.refs.scene.addEventListener('click', () => {
       this.stopAnimation();
     })
+
+    debugger
 
     // Use of fonts
     // const fonts = {
@@ -126,11 +128,11 @@ export default class PagIndexCmp extends React.Component<IProps, IState> {
     this.closeSideMenu();
   }
 
-  private openDialogDelayed = (delayTime: number) => {
-    setTimeout( () => {
-      // this.refs.dialog.show();
-    }, delayTime)
-  }
+  // private openDialogDelayed = (delayTime: number) => {
+  //   setTimeout( () => {
+  //     this.refs.dialog.show();
+  //   }, delayTime)
+  // }
 
   private closeDialog = () => {
     // this.refs.dialog.hide();
