@@ -3,7 +3,7 @@
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
 .dialogContainer {
-  /* Note: loader z-index = 10 */
+  /* Note: <Loader/> z-index needs to be visible on top of <Dialog/> z-index */
   z-index: 10;
   position: absolute;
   width: 100%;
@@ -59,14 +59,13 @@
     transform: scale(1);
   }
 }
-
-
 /**
  * ----------------------------------------
  * animation scale-out-vertical
  * ----------------------------------------
  */
 .scale-out-vertical {
+  display: block;
   -webkit-animation: scale-out-vertical 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
   animation: scale-out-vertical 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
@@ -94,13 +93,13 @@
     opacity: 1;
   }
 }
-
 /**
  * ----------------------------------------
  * animation scale-in-ver-center
  * ----------------------------------------
  */
 .scale-in-ver-center {
+  display: block;
   -webkit-animation: scale-in-ver-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: scale-in-ver-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -126,7 +125,6 @@
     transform: scaleY(1);
   }
 }
-
 /**
  * ----------------------------------------
  * animation scale-out-center
@@ -160,7 +158,6 @@
     opacity: 0;
   }
 }
-
 /**
  * ----------------------------------------
  * animation scale-out-vertical
@@ -194,7 +191,6 @@
     opacity: 0;
   }
 }
-
 /**
  * ----------------------------------------
  * animation scale-out-horizontal

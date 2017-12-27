@@ -7,43 +7,70 @@ interface IProps {
   [attrs: string]: any;
 }
 
-export default class Dialog extends React.PureComponent<IProps, {}> {
+interface IState {
+  isOpen: boolean
+}
+
+export default class Dialog extends React.PureComponent<IProps, IState> {
+
+  public state = {isOpen: true};
 
   private dialogContainer: HTMLDivElement;
 
   /* Css class name for animation when showing Dialog */
-  private static classShowAnimation = 'scale-in-ver-center';
+  private static classOpenDialog = 'scale-in-ver-center';
 
   /* Css class name for animation when hidding Dialog */
-  private static classHideAnimation = 'scale-out-vertical';
+  private static classClosedDialog = 'scale-out-vertical';
 
-  public componentDidMount() {
-    const parentElement = this.dialogContainer && this.dialogContainer.parentElement as HTMLElement;
-    parentElement && parentElement.addEventListener('click', () => {
-      this.hide(); // Hide dialog when click outside
-    });
-  }
+  // constructor(props: IProps) {
+  //   super(props);
+  //   this.state = {isOpen: false};
+  // }
+
+  // public componentDidMount() {
+  //   const parentElement = this.dialogContainer && this.dialogContainer.parentElement as HTMLElement;
+  //   parentElement && parentElement.addEventListener('click', () => {
+  //     this.hide(); // Hide dialog when click outside
+  //   });
+  // }
 
   public hide() {
-    this.dialogContainer.classList.remove(Dialog.classShowAnimation);
-    this.dialogContainer.classList.add(Dialog.classHideAnimation);
+    this.dialogContainer.classList.remove(Dialog.classOpenDialog);
+    this.dialogContainer.classList.add(Dialog.classClosedDialog);
   }
 
   public show() {
     this.dialogContainer.style.display = 'block';
-    this.dialogContainer.classList.remove(Dialog.classHideAnimation);
-    this.dialogContainer.classList.add(Dialog.classShowAnimation);
+    this.dialogContainer.classList.remove(Dialog.classClosedDialog);
+    this.dialogContainer.classList.add(Dialog.classOpenDialog);
+  }
+
+  public open() {
+    this.setState({isOpen: true});
+  }
+
+  public close() {
+    this.setState({isOpen: false});
   }
 
   public render() {
+    let dialogContainerClass: string;
+    if (this.state.isOpen) {
+      dialogContainerClass = 'dialogContainer ' + Dialog.classOpenDialog;
+    } else {
+      dialogContainerClass = 'dialogContainer ' + Dialog.classClosedDialog;
+    }
+
     return (
       <div ref={ (dialogContainer: HTMLDivElement) => this.dialogContainer = dialogContainer }
-        className="dialogContainer">
-          <div className={ `dialogContent ${Dialog.classShowAnimation}` }>
+        className={ dialogContainerClass }>
+          <div className="dialogContent">
             <div className="dialog-title">{ this.props.title }</div>
             { this.props.children }
           </div>
       </div>
     )
+
   }
 }

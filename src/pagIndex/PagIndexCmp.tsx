@@ -100,6 +100,12 @@ export default class PagIndexCmp extends React.Component<IProps, IState> {
       this.stopAnimation();
     })
 
+    // Use of fonts
+    // const fonts = {
+    //   'Roboto': require('native-base/Fonts/Roboto.ttf'),
+    //   'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')
+    // }
+
   }
 
   private objToString(component: Object): string {
@@ -115,18 +121,20 @@ export default class PagIndexCmp extends React.Component<IProps, IState> {
   }
 
   private openDialog = () => {
-    this.refs.dialog.show();
+    // this.refs.dialog.show();
+    this.refs.dialog.open();
     this.closeSideMenu();
   }
 
   private openDialogDelayed = (delayTime: number) => {
     setTimeout( () => {
-      this.refs.dialog.show();
+      // this.refs.dialog.show();
     }, delayTime)
   }
 
   private closeDialog = () => {
-    this.refs.dialog.hide();
+    // this.refs.dialog.hide();
+    this.refs.dialog.close();
   }
 
   private openSideMenu = () => {
@@ -170,7 +178,7 @@ export default class PagIndexCmp extends React.Component<IProps, IState> {
         {/*todo: definir SIDE_MENU_ITEMS aqui. de esta forma puedo definir la funcion*/}
         {/*openDialog en sideMenuItem*/}
         <SideMenu ref="sideMenu" title="React + AFrame" items={ SIDE_MENU_ITEMS } itemActive="0">
-          <img src={ helpIcon } className="icon-item" /><a href="#" onClick={ this.openDialog }>Help</a>
+          <img src={ helpIcon } className="icon-item" /><a href="#" onClick={ () => this.openDialog() }>Help</a>
         </SideMenu>
 
         <TopMenu onClickMenuBtn={ this.openSideMenu }>
@@ -209,3 +217,7 @@ export default class PagIndexCmp extends React.Component<IProps, IState> {
     );
   }
 }
+
+
+// WEBPACK FOOTER //
+// ./node_modules/tslint-loader!./src/pagIndex/PagIndexCmp.tsx
